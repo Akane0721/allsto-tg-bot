@@ -3,10 +3,10 @@ const mainMenu = {
         inline_keyboard: [
             [{ text: '👨‍💼 Get Help', url: 'https://discord.com/invite/5nEmUemqKC' }],
             [
-                { text: '▶️ Create my payment link', url: 'https://alls.to' },
+                { text: '▶️ Create My Payment Link', url: 'https://alls.to' },
                 { text: '📋 Docs', url: 'https://docs.alls.to' }
             ],
-            [{ text: '🤝 Integrate with allsto enterprise', callback_data: 'coop' }],
+            [{ text: '🤝 Integrate with AllsTo Enterprise', callback_data: 'coop' }],
         ]
     }
 }

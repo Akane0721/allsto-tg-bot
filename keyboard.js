@@ -1,7 +1,7 @@
 const mainMenu = {
     reply_markup: {
         inline_keyboard: [
-            [{ text: '👨‍💼 Get Help', url: 'https://discord.com/invite/5nEmUemqKC' }],
+            [{ text: '👨‍💼 Get Help', url: 'https://discord.com/invite/allsto' }],
             [
                 { text: '▶️ Create My Payment Link', url: 'https://alls.to' },
                 { text: '📋 Docs', url: 'https://docs.alls.to' }

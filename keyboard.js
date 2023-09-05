@@ -3,8 +3,8 @@ const mainMenu = {
         inline_keyboard: [
             [{ text: '👨‍💼 Get Help', url: 'https://discord.com/invite/allsto' }],
             [
-                { text: '🔁Swap', callback_data: 'swap' },
-                { text: '🔑Show Private Key', callback_data: 'privateKey' }
+                { text: '🔁 Swap', callback_data: 'swap' },
+                { text: '🔑 Show Private Key', callback_data: 'privateKey' }
             ],
             [
                 { text: '▶️ Create My Payment Link', url: 'https://alls.to' },

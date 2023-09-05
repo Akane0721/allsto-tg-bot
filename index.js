@@ -13,6 +13,12 @@ const {
 
 let walletAddress
 const selections = {}
+const map = {
+    'eth': 'Ethereum',
+    'bnb': 'BNB Chain',
+    'arb': 'Arbitrum'
+}
+
 
 const bot = new TelegramBot(BOT_TOKEN, {
     polling: true,
@@ -31,7 +37,6 @@ app.listen(PORT, async () => {
     bot.onText(/\/start/, async (msg) => {
         const chatId = msg.chat.id
         const userId = msg.from.id
-        const userName = msg.from.username
         walletAddress = await getWallet(userId)
         if (!selections[userId]) {
             selections[userId] = []
@@ -50,7 +55,6 @@ app.listen(PORT, async () => {
 
     bot.onText(/\/menu/, async (msg) => {
         const chatId = msg.chat.id
-        const userName = msg.from.username
         const userId = msg.from.id
         console.log(userId)
         walletAddress = await getWallet(userId)
@@ -176,10 +180,10 @@ app.listen(PORT, async () => {
             selections[userId][5] = amount
 
             if (!selections[userId][4]) selections[userId][4] = await getWallet(userId)
-            bot.sendMessage(chatId, `Please confirm the swap details:\nFrom/To: ${selections[userId][0]} (${selections[userId][1]}) → ${selections[userId][2]} (${selections[userId][3]})\nAmount: ${selections[userId][5]} ${selections[userId][1]}\nSender: ${selections[userId][4]}\nRecipient: ${selections[userId][4]}`)
+            bot.sendMessage(chatId, `Please confirm the swap details:\nFrom/To: ${map[selections[userId][0]]} (${selections[userId][1].toUpperCase()}) → ${map[selections[userId][2]]} (${selections[userId][3].toUpperCase()})\nAmount: ${selections[userId][5]} ${selections[userId][1].toUpperCase()}\nSender: ${selections[userId][4]}\nRecipient: ${selections[userId][4]}`)
             const fee = await getPrice(selections[userId])
             if (!fee.error) {
-                bot.sendMessage(chatId, `Total Fee: ${fee.result.totalFee} ${selections[userId][1]}\nService Fee: ${fee.result.serviceFee} ${selections[userId][1]}\nLP Fee: ${fee.result.lpFee} ${selections[userId][1]}\n\nReceive: ${selections[userId][5] - fee.result.totalFee} ${selections[userId][1]}`, confirm)
+                bot.sendMessage(chatId, `Total Fee: ${fee.result.totalFee} ${selections[userId][1].toUpperCase()}\nService Fee: ${fee.result.serviceFee} ${selections[userId][1].toUpperCase()}\nLP Fee: ${fee.result.lpFee} ${selections[userId][1].toUpperCase()}\n\nReceive: ${selections[userId][5] - fee.result.totalFee} ${selections[userId][1].toUpperCase()}`, confirm)
             }
             else {
                 if (fee.error.message === "invalid-amount") {

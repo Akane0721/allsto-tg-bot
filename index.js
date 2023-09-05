@@ -43,9 +43,9 @@ app.listen(PORT, async () => {
         }
         selections[userId][4] = walletAddress
         const menu_text = `Welcome to the official Alls.to Telegram! If you have any questions or inquiries, please select the appropriate option below.
-        \nComplete easier cross-chain collection and payment through:  https://alls.to
-        \nFor your convenience, we have automatically generated a wallet address that belongs only to you:\n${walletAddress}\nPlease feel free to use it. Click “Swap” to start a transaction and click "Show Private Key" to display the private key of this address.\n
-        \nIf you need further assistance, please send admin a private message: 
+        \nComplete easier cross-chain collection and payment through:  https://alls.to \n——————  📣 <b>Your Wallet</b> ——————
+        \nFor your convenience, we have automatically generated a wallet address that belongs only to you:\n🔑<code>${walletAddress}</code>🔑\n1. Click 🔁 Swap to start a transaction\n2. Click 🔑 Show Private Key to display the private key of this address.\n
+        \n——————  ℹ️ <b>Get Help</b> ——————\nIf you need further assistance, please send admin a private message: 
         \n👨‍💼 Moderator: @MrFish\n🤝 Cooperation: @KaceyK0
         \nIf you require assistance with your link or transactions regarding Alls.to, please follow these steps for support:\n1. Join the Alls.to Discord server using the following link: https://discord.gg/alls.to\n2. Click the 'Get Help' button below.
         `
@@ -63,9 +63,9 @@ app.listen(PORT, async () => {
         }
         selections[userId][4] = walletAddress
         const menu_text = `Welcome to the official Alls.to Telegram! If you have any questions or inquiries, please select the appropriate option below.
-        \nComplete easier cross-chain collection and payment through:  https://alls.to
-        \nFor your convenience, we have automatically generated a wallet address that belongs only to you:\n${walletAddress}\nPlease feel free to use it. Click “Swap” to start a transaction and click "Show Private Key" to display the private key of this address.\n
-        \nIf you need further assistance, please send admin a private message: 
+        \nComplete easier cross-chain collection and payment through:  https://alls.to \n——————  📣 <b>Your Wallet</b> ——————
+        \nFor your convenience, we have automatically generated a wallet address that belongs only to you:\n🔑<code>${walletAddress}</code>🔑\n1. Click 🔁 Swap to start a transaction\n2. Click 🔑 Show Private Key to display the private key of this address.\n
+        \n——————  ℹ️ <b>Get Help</b> ——————\nIf you need further assistance, please send admin a private message: 
         \n👨‍💼 Moderator: @MrFish\n🤝 Cooperation: @KaceyK0
         \nIf you require assistance with your link or transactions regarding Alls.to, please follow these steps for support:\n1. Join the Alls.to Discord server using the following link: https://discord.gg/alls.to\n2. Click the 'Get Help' button below.
         `
@@ -79,7 +79,7 @@ app.listen(PORT, async () => {
         const data = callbackQuery.data
 
         if (data === 'coop') {
-            bot.sendMessage(chatId, 'To implement an enterprise-level fiat and stablecoin payment solution on web3, please contact @KaceyK0 for further collaboration.')
+            bot.sendMessage(chatId, 'ALLsTo currently supports fast integration with more than 20 chains, including Ethereum, BNB Chain, Polygon PoS, Arbitrum, Optimism, Avalanche, Tron, Fantom, Aurora, Conflux eSpace, Moonriver, Moonbeam, Cronos, EOS EVM, zkSync Era, Polygon zkEVM, Linea, Base, Aptos, and Sui.\nTo implement an enterprise-level fiat and stablecoin payment solution on web3, please contact @KaceyK0 for further collaboration.')
         }
         else if (data === 'swap') {
             bot.sendMessage(chatId, "Please select the origin network and token:", from)

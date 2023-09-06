@@ -8,7 +8,7 @@ const mainMenu = {
                 { text: '🔑 Show Private Key', callback_data: 'privateKey' }
             ],
             [
-                { text: '▶️ Create My Payment Link', url: 'https://alls.to' },
+                { text: '▶️ Create Link', url: 'https://alls.to' },
                 { text: '📋 Docs', url: 'https://docs.alls.to' }
             ],
             [{ text: '🤝 Integrate with AllsTo Enterprise', callback_data: 'coop' }],           

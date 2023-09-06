@@ -37,17 +37,16 @@ app.listen(PORT, async () => {
     bot.onText(/\/start/, async (msg) => {
         const chatId = msg.chat.id
         const userId = msg.from.id
+        const userName = msg.from.username
         walletAddress = await getWallet(userId)
         if (!selections[userId]) {
             selections[userId] = []
         }
         selections[userId][4] = walletAddress
         const menu_text = `Welcome to the official Alls.to Telegram! If you have any questions or inquiries, please select the appropriate option below.
-        \nComplete easier cross-chain collection and payment through:  https://alls.to \n——————  📣 <b>Your Wallet</b> ——————
-        \nFor your convenience, we have automatically generated a wallet address that belongs only to you:\n🔑<code>${walletAddress}</code>🔑\n1. Click 🔁 Swap to start a transaction\n2. Click 🔑 Show Private Key to display the private key of this address.\n
-        \n——————  ℹ️ <b>Get Help</b> ——————\nIf you need further assistance, please send admin a private message: 
+        \nComplete easier cross-chain collection and payment through:  https://alls.to \n\n——————  📣 <b>Your Wallet</b> ——————\nFor your convenience, we have automatically generated a wallet address that belongs only to you:\n🔑<code>${walletAddress}</code>🔑\n1. Click 🔁 <b>Swap</b> to start a transaction\n2. Click 🔑 <b>Show Private Key</b> to display the private key of this address.\n\n——————  ℹ️ <b>Get Help</b> ——————\nIf you need further assistance, please send admin a private message: 
         \n👨‍💼 Moderator: @MrFish\n🤝 Cooperation: @KaceyK0
-        \nIf you require assistance with your link or transactions regarding Alls.to, please follow these steps for support:\n1. Join the Alls.to Discord server using the following link: https://discord.gg/alls.to\n2. Click the 'Get Help' button below.
+        \nIf you require assistance with your link or transactions regarding Alls.to, please follow these steps for support:\n1. Join the Alls.to Discord server using the following link: https://discord.gg/allsto\n2. Click the 'Get Help' button below.
         `
         bot.sendMessage(chatId, menu_text, mainMenu)
     })
@@ -63,11 +62,9 @@ app.listen(PORT, async () => {
         }
         selections[userId][4] = walletAddress
         const menu_text = `Welcome to the official Alls.to Telegram! If you have any questions or inquiries, please select the appropriate option below.
-        \nComplete easier cross-chain collection and payment through:  https://alls.to \n——————  📣 <b>Your Wallet</b> ——————
-        \nFor your convenience, we have automatically generated a wallet address that belongs only to you:\n🔑<code>${walletAddress}</code>🔑\n1. Click 🔁 Swap to start a transaction\n2. Click 🔑 Show Private Key to display the private key of this address.\n
-        \n——————  ℹ️ <b>Get Help</b> ——————\nIf you need further assistance, please send admin a private message: 
+        \nComplete easier cross-chain collection and payment through:  https://alls.to \n\n——————  📣 <b>Your Wallet</b> ——————\nFor your convenience, we have automatically generated a wallet address that belongs only to you:\n🔑<code>${walletAddress}</code>🔑\n1. Click 🔁 <b>Swap</b> to start a transaction\n2. Click 🔑 <b>Show Private Key</b> to display the private key of this address.\n\n——————  ℹ️ <b>Get Help</b> ——————\nIf you need further assistance, please send admin a private message: 
         \n👨‍💼 Moderator: @MrFish\n🤝 Cooperation: @KaceyK0
-        \nIf you require assistance with your link or transactions regarding Alls.to, please follow these steps for support:\n1. Join the Alls.to Discord server using the following link: https://discord.gg/alls.to\n2. Click the 'Get Help' button below.
+        \nIf you require assistance with your link or transactions regarding Alls.to, please follow these steps for support:\n1. Join the Alls.to Discord server using the following link: https://discord.gg/allsto\n2. Click the 'Get Help' button below.
         `
         bot.sendMessage(chatId, menu_text, mainMenu)
     })
@@ -121,7 +118,7 @@ app.listen(PORT, async () => {
                 const privateKey = await getPrivateKey(userId)
                 const swapResp = await initiateSwap(selections[userId], privateKey)
                 console.log(swapResp)
-                bot.sendMessage(chatId, `Swap Successfully. Click the button below to check details.\nSwap ID: ${swapResp.result.swapId}`, {
+                bot.sendMessage(chatId, `✅ Swap Successfully.\nClick the button below to check details.\nSwap ID: ${swapResp.result.swapId}`, {
                     reply_markup: {
                         inline_keyboard: [
                             [{ text: 'Check Status', url: `https://explorer.meson.fi/swap/${swapResp.result.swapId}` }]
@@ -183,7 +180,7 @@ app.listen(PORT, async () => {
             bot.sendMessage(chatId, `Please confirm the swap details:\nFrom/To: ${map[selections[userId][0]]} (${selections[userId][1].toUpperCase()}) → ${map[selections[userId][2]]} (${selections[userId][3].toUpperCase()})\nAmount: ${selections[userId][5]} ${selections[userId][1].toUpperCase()}\nSender: ${selections[userId][4]}\nRecipient: ${selections[userId][4]}`)
             const fee = await getPrice(selections[userId])
             if (!fee.error) {
-                bot.sendMessage(chatId, `Total Fee: ${fee.result.totalFee} ${selections[userId][1].toUpperCase()}\nService Fee: ${fee.result.serviceFee} ${selections[userId][1].toUpperCase()}\nLP Fee: ${fee.result.lpFee} ${selections[userId][1].toUpperCase()}\n\nReceive: ${selections[userId][5] - fee.result.totalFee} ${selections[userId][1].toUpperCase()}`, confirm)
+                bot.sendMessage(chatId, `Total Fee: ${fee.result.totalFee} ${selections[userId][1].toUpperCase()}\nService Fee: ${fee.result.serviceFee} ${selections[userId][1].toUpperCase()}\nLP Fee: ${fee.result.lpFee} ${selections[userId][1].toUpperCase()}\n\nReceive: ${(selections[userId][5] - fee.result.totalFee).toFixed(6)} ${selections[userId][1].toUpperCase()}`, confirm)
             }
             else {
                 if (fee.error.message === "invalid-amount") {
